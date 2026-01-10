@@ -64,6 +64,9 @@ spec:
             - name: homekit
               containerPort: 51826
               protocol: TCP
+            - name: mdns
+              containerPort: 5353
+              protocol: UDP
           livenessProbe:
             httpGet:
               path: /

@@ -25,5 +25,9 @@ spec:
       targetPort: homekit
       protocol: TCP
       name: homekit
+    - port: 5353
+      targetPort: mdns
+      protocol: UDP
+      name: mdns
   selector:
     {{- include "homebridge.selectorLabels" . | nindent 4 }}
