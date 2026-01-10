@@ -32,8 +32,13 @@ securityContext:
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 8581
+  # LoadBalancer specific settings
+  loadBalancerIP: ""
+  externalTrafficPolicy: Local
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: homebridge.local
 
 ingress:
   enabled: true
