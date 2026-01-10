@@ -112,3 +112,10 @@ env: []
 # Network mode - set to hostNetwork: true if you need host network mode
 # Note: This is not recommended in Kubernetes, use only if necessary
 hostNetwork: false
+
+# Multus CNI network configuration for static IP assignment
+multusNetwork:
+  enabled: true
+  name: "homekit-net"
+  ip: "192.168.1.210/24"
+  gateway: "192.168.1.1"
