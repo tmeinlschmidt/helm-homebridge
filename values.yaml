@@ -1,0 +1,109 @@
+# Default values for homebridge
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: homebridge/homebridge
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+      - NET_RAW
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8581
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  hosts:
+    - host: homebridge.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: homebridge-tls
+  #    hosts:
+  #      - homebridge.local
+
+resources: {}
+  # limits:
+  #   cpu: 500m
+  #   memory: 512Mi
+  # requests:
+  #   cpu: 250m
+  #   memory: 256Mi
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  # existingClaim: ""
+
+# Initial configuration for Homebridge
+# This will be used to initialize the config.json file if it doesn't exist
+initialConfig:
+  enabled: true
+  # Default config.json content
+  config: |
+    {
+      "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+      },
+      "accessories": [],
+      "platforms": [
+        {
+          "name": "Config",
+          "port": 8581,
+          "platform": "config"
+        }
+      ]
+    }
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Environment variables
+env: []
+  # - name: TZ
+  #   value: "America/New_York"
+  # - name: HOMEBRIDGE_CONFIG_UI
+  #   value: "1"
+  # - name: HOMEBRIDGE_CONFIG_UI_PORT
+  #   value: "8581"
+
+# Network mode - set to hostNetwork: true if you need host network mode
+# Note: This is not recommended in Kubernetes, use only if necessary
+hostNetwork: false

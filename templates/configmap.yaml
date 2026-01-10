@@ -1,0 +1,11 @@
+{{- if .Values.initialConfig.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "homebridge.fullname" . }}-config
+  labels:
+    {{- include "homebridge.labels" . | nindent 4 }}
+data:
+  config.json: |
+    {{- .Values.initialConfig.config | nindent 4 }}
+{{- end }}

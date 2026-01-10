@@ -1,0 +1,18 @@
+apiVersion: v2
+name: homebridge
+description: A Helm chart for Homebridge - HomeKit support for the impatient
+type: application
+version: 1.0.0
+appVersion: "latest"
+keywords:
+  - homebridge
+  - homekit
+  - smart-home
+home: https://homebridge.io/
+sources:
+  - https://github.com/homebridge/homebridge
+maintainers:
+  - name: Tom Meinlschmidt
+    url: https://github.com/tmeinlschmidt
+  - name: homebridge
+    url: https://github.com/homebridge/homebridge
