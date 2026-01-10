@@ -2,7 +2,7 @@ apiVersion: v2
 name: homebridge
 description: A Helm chart for Homebridge - HomeKit support for the impatient
 type: application
-version: 1.0.0
+version: 1.0.3
 appVersion: "latest"
 keywords:
   - homebridge

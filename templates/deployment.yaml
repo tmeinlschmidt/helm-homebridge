@@ -13,10 +13,13 @@ spec:
       {{- include "homebridge.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        {{- if .Values.multusNetwork.enabled }}
+        k8s.v1.cni.cncf.io/networks: '[{"name": "{{ .Values.multusNetwork.name }}", "ips": ["{{ .Values.multusNetwork.ip }}"], "gateway": ["{{ .Values.multusNetwork.gateway }}"]}]'
+        {{- end }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       labels:
         {{- include "homebridge.selectorLabels" . | nindent 8 }}
     spec:
