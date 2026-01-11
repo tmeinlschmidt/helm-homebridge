@@ -15,7 +15,7 @@ spec:
     metadata:
       annotations:
         {{- if .Values.multusNetwork.enabled }}
-        k8s.v1.cni.cncf.io/networks: '[{"name": "{{ .Values.multusNetwork.name }}", "ips": ["{{ .Values.multusNetwork.ip }}"], "gateway": ["{{ .Values.multusNetwork.gateway }}"]}]'
+        k8s.v1.cni.cncf.io/networks: {{ .Values.multusNetwork.name }}
         {{- end }}
         {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}

@@ -113,9 +113,13 @@ env: []
 # Note: This is not recommended in Kubernetes, use only if necessary
 hostNetwork: false
 
-# Multus CNI network configuration for static IP assignment
+# Multus CNI network configuration with macvlan
 multusNetwork:
   enabled: true
   name: "homekit-net"
-  ip: "192.168.1.210/24"
+  master: "eth0"
+  # IPAM configuration - IP auto-assigned from range
+  subnet: "192.168.1.0/24"
+  rangeStart: "192.168.1.200"
+  rangeEnd: "192.168.1.216"
   gateway: "192.168.1.1"
