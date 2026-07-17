@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: homebridge/homebridge
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "2026-07-15"
 
 imagePullSecrets: []
 nameOverride: ""
